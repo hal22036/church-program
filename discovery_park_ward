@@ -15,11 +15,11 @@
   <div class="wrap">
     <h2>This Week’s Program</h2>
 
-    <img src="page_front.jpg" alt="Program page 1">
-    <img src="page_announcements.jpg" alt="Program page 2">
-    <img src="page_calendar.jpg" alt="Program page 3">
-    <img src="page_program.jpg" alt="Program page 4">
-    <img src="page_information.jpg" alt="Program page 5">
+    <img src="github/page_front.jpg" alt="Program page 1">
+    <img src="github/page_announcements.jpg" alt="Program page 2">
+    <img src="github/page_calendar.jpg" alt="Program page 3">
+    <img src="github/page_program.jpg" alt="Program page 4">
+    <img src="github/page_information.jpg" alt="Program page 5">
   </div>
 </body>
 </html>
