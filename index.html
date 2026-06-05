@@ -3,21 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>This Week's Church Program</title>
+  <title>Discovery Park Ward Program</title>
+
   <style>
-    body { margin: 0; font-family: system-ui, Arial, sans-serif; background: #fff; }
-    .wrap { max-width: 900px; margin: 0 auto; padding:4px; }
-    h2 { text-align: center; margin: 10px 0 18px; }
-    img { width: 100%; height: auto; display: block; margin: 20px 0; border-radius: 8px; }
+    body {
+      margin: 0;
+      font-family: system-ui, Arial, sans-serif;
+      background: #fff;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .song-links {
+      display: grid;
+      gap: 10px;
+      margin: 10px 0 20px;
+    }
+
+    .song-links a {
+      display: block;
+      padding: 14px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      background: #f7f7f7;
+    }
+
+    .song-links a:hover {
+      background: #eeeeee;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-  <img src="page_front@2x-100.jpg" alt="Program page 1">
-  <img src="page_program@2x-100.jpg" alt="Program page 4">  
-  <img src="page_announcements@2x-100.jpg" alt="Program page 2">
-  <img src="page_calendar@2x-100.jpg" alt="Program page 3"> 
-  <img src="page_information@2x-100.jpg" alt="Program page 5">
-</div>
+  <div class="wrap" id="program"></div>
+
+  <script>
+    // CHANGE THIS ONE LINE EACH WEEK
+    const version = "20260607";
+
+    // CHANGE THESE LINKS EACH WEEK
+const hymns = [
+  { title: "Opening Hymn", number: 39 },
+  { title: "Sacrament Hymn", number: 195 },
+  { title: "Intermediate Hymn", number: 194 },
+  { title: "Closing Hymn", number: 137 }
+];
+
+    const container = document.getElementById("program");
+
+    const images = [
+      "page_front@2x-100.jpg",
+      "page_program@2x-100.jpg",
+      "page_announcements@2x-100.jpg",
+      "page_calendar@2x-100.jpg",
+      "page_information@2x-100.jpg"
+    ];
+
+    images.forEach((file, index) => {
+
+      // Insert hymn buttons before the program page
+      if (file === "page_program@2x-100.jpg") {
+
+        const songDiv = document.createElement("div");
+        songDiv.className = "song-links";
+
+       hymns.forEach(hymn => {
+  const link = document.createElement("a");
+
+  link.href =
+    `https://www.churchofjesuschrist.org/music/library/hymns?lang=eng#${hymn.number}`;
+
+  link.target = "_blank";
+  link.textContent = `${hymn.title} (#${hymn.number})`;
+
+  songDiv.appendChild(link);
+});
+
+        container.appendChild(songDiv);
+      }
+
+      const img = document.createElement("img");
+      img.src = `github/${file}?v=${version}`;
+      img.alt = `Program page ${index + 1}`;
+
+      container.appendChild(img);
+    });
+  </script>
 </body>
 </html>
