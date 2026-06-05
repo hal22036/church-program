@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -43,37 +44,31 @@
       font-weight: 600;
       background: #f7f7f7;
     }
+
+    .song-links a:hover {
+      background: #eeeeee;
+    }
   </style>
+
 </head>
 
 <body>
   <div class="wrap" id="program"></div>
 
   <script>
-    // Change this each week
+
+    // CHANGE THIS ONE LINE EACH WEEK
     const version = "20260607";
 
-    // If your images are inside the github folder, keep this as "github/"
-    // If your images are next to index.html, change this to ""
-    const imageFolder = "";
-
+    // CHANGE HYMN NAMES EACH WEEK
     const hymns = [
-      {
-        title: "Opening Hymn (#39)",
-        url: "https://www.churchofjesuschrist.org/study/manual/hymns/in-fasting-we-approach-thee?lang=eng"
-      },
-      {
-        title: "Sacrament Hymn (#195)",
-        url: "https://www.churchofjesuschrist.org/study/manual/hymns/how-great-the-wisdom-and-the-love?lang=eng"
-      },
-      {
-        title: "Intermediate Hymn (#194)",
-        url: "https://www.churchofjesuschrist.org/study/manual/hymns/there-is-a-green-hill-far-away?lang=eng"
-      },
-      {
-        title: "Closing Hymn (#137)",
-        url: "https://www.churchofjesuschrist.org/study/manual/hymns/testimony?lang=eng"
-      }
+      { title: "Opening Hymn", hymn: "In Fasting We Approach Thee" },
+      { title: "Sacrament Hymn", hymn: "How Great the Wisdom and the Love" },
+
+      // Uncomment if needed:
+      // { title: "Intermediate Hymn", hymn: "Be Still, My Soul" },
+
+      { title: "Closing Hymn", hymn: "Testimony" }
     ];
 
     const images = [
@@ -87,16 +82,26 @@
     const container = document.getElementById("program");
 
     images.forEach((file, index) => {
+
       if (file === "page_program@2x-100.jpg") {
+
         const songDiv = document.createElement("div");
         songDiv.className = "song-links";
 
-        hymns.forEach((hymn) => {
+        hymns.forEach(hymn => {
+
           const link = document.createElement("a");
-          link.href = hymn.url;
+
+          const searchTerm = encodeURIComponent(hymn.hymn);
+
+          link.href =
+            `https://www.churchofjesuschrist.org/search?lang=eng&query=${searchTerm}`;
+
           link.target = "_blank";
           link.rel = "noopener";
-          link.textContent = hymn.title;
+
+          link.textContent = `${hymn.title}: ${hymn.hymn}`;
+
           songDiv.appendChild(link);
         });
 
@@ -104,10 +109,15 @@
       }
 
       const img = document.createElement("img");
-      img.src = `${imageFolder}${file}?v=${version}`;
+
+      img.src = `${file}?v=${version}`;
+
       img.alt = `Program page ${index + 1}`;
+
       container.appendChild(img);
     });
+
   </script>
+
 </body>
 </html>
