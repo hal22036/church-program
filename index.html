@@ -43,10 +43,6 @@
       font-weight: 600;
       background: #f7f7f7;
     }
-
-    .song-links a:hover {
-      background: #eeeeee;
-    }
   </style>
 </head>
 
@@ -54,18 +50,16 @@
   <div class="wrap" id="program"></div>
 
   <script>
-    // CHANGE THIS ONE LINE EACH WEEK
+    // Change this date each week to force phones to load the new images
     const version = "20260607";
 
-    // CHANGE THESE LINKS EACH WEEK
-const hymns = [
-  { title: "Opening Hymn", number: 39 },
-  { title: "Sacrament Hymn", number: 195 },
-  { title: "Intermediate Hymn", number: 194 },
-  { title: "Closing Hymn", number: 137 }
-];
-
-    const container = document.getElementById("program");
+    // Change only the hymn numbers each week
+    const hymns = [
+      { title: "Opening Hymn", number: 39 },
+      { title: "Sacrament Hymn", number: 195 },
+      { title: "Intermediate Hymn", number: 194 },
+      { title: "Closing Hymn", number: 137 }
+    ];
 
     const images = [
       "page_front@2x-100.jpg",
@@ -75,25 +69,21 @@ const hymns = [
       "page_information@2x-100.jpg"
     ];
 
+    const container = document.getElementById("program");
+
     images.forEach((file, index) => {
-
-      // Insert hymn buttons before the program page
       if (file === "page_program@2x-100.jpg") {
-
         const songDiv = document.createElement("div");
         songDiv.className = "song-links";
 
-       hymns.forEach(hymn => {
-  const link = document.createElement("a");
-
-  link.href =
-    `https://www.churchofjesuschrist.org/music/library/hymns?lang=eng#${hymn.number}`;
-
-  link.target = "_blank";
-  link.textContent = `${hymn.title} (#${hymn.number})`;
-
-  songDiv.appendChild(link);
-});
+        hymns.forEach((hymn) => {
+          const link = document.createElement("a");
+          link.href = `https://www.churchofjesuschrist.org/music/library/hymns?lang=eng#${hymn.number}`;
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = `${hymn.title} (#${hymn.number})`;
+          songDiv.appendChild(link);
+        });
 
         container.appendChild(songDiv);
       }
@@ -101,7 +91,6 @@ const hymns = [
       const img = document.createElement("img");
       img.src = `github/${file}?v=${version}`;
       img.alt = `Program page ${index + 1}`;
-
       container.appendChild(img);
     });
   </script>
