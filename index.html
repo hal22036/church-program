@@ -108,7 +108,7 @@
           const searchTerm = encodeURIComponent(hymn.hymn);
 
           link.href =
-            `https://www.churchofjesuschrist.org/search?lang=eng&query=${searchTerm}`;
+            link.href = `https://www.churchofjesuschrist.org/study/manual/hymns/${hymn.slug}?lang=eng`;
 
           link.target = "_blank";
           link.rel = "noopener";
