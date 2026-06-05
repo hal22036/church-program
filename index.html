@@ -50,15 +50,30 @@
   <div class="wrap" id="program"></div>
 
   <script>
-    // Change this date each week to force phones to load the new images
+    // Change this each week
     const version = "20260607";
 
-    // Change only the hymn numbers each week
+    // If your images are inside the github folder, keep this as "github/"
+    // If your images are next to index.html, change this to ""
+    const imageFolder = "";
+
     const hymns = [
-      { title: "Opening Hymn", number: 39 },
-      { title: "Sacrament Hymn", number: 195 },
-      { title: "Intermediate Hymn", number: 194 },
-      { title: "Closing Hymn", number: 137 }
+      {
+        title: "Opening Hymn (#39)",
+        url: "https://www.churchofjesuschrist.org/study/manual/hymns/in-fasting-we-approach-thee?lang=eng"
+      },
+      {
+        title: "Sacrament Hymn (#195)",
+        url: "https://www.churchofjesuschrist.org/study/manual/hymns/how-great-the-wisdom-and-the-love?lang=eng"
+      },
+      {
+        title: "Intermediate Hymn (#194)",
+        url: "https://www.churchofjesuschrist.org/study/manual/hymns/there-is-a-green-hill-far-away?lang=eng"
+      },
+      {
+        title: "Closing Hymn (#137)",
+        url: "https://www.churchofjesuschrist.org/study/manual/hymns/testimony?lang=eng"
+      }
     ];
 
     const images = [
@@ -78,10 +93,10 @@
 
         hymns.forEach((hymn) => {
           const link = document.createElement("a");
-          link.href = `https://www.churchofjesuschrist.org/music/library/hymns?lang=eng#${hymn.number}`;
+          link.href = hymn.url;
           link.target = "_blank";
           link.rel = "noopener";
-          link.textContent = `${hymn.title} (#${hymn.number})`;
+          link.textContent = hymn.title;
           songDiv.appendChild(link);
         });
 
@@ -89,7 +104,7 @@
       }
 
       const img = document.createElement("img");
-      img.src = `github/${file}?v=${version}`;
+      img.src = `${imageFolder}${file}?v=${version}`;
       img.alt = `Program page ${index + 1}`;
       container.appendChild(img);
     });
