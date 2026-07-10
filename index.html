@@ -73,10 +73,10 @@
     slug: "upon-the-cross-of-calvary"
   },
   {
-    title: "Intermediate Hymn",
-    hymn: "Elijah and the Still, Small Voice",
-    slug: "elijah-and-the-still-small-voice"
-  },
+  title: "Intermediate Hymn",
+  hymn: "Elijah and the Still, Small Voice",
+  url: "https://www.churchofjesuschrist.org/media/music/songs/elijah-and-the-still-small-voice?lang=eng"
+},
   {
     title: "Closing Hymn",
     hymn: "Know This, That Every Soul Is Free",
@@ -107,8 +107,11 @@
 
           const searchTerm = encodeURIComponent(hymn.hymn);
 
-          link.href =
-            link.href = `https://www.churchofjesuschrist.org/study/manual/hymns/${hymn.slug}?lang=eng`;
+          if (hymn.url) {
+  link.href = hymn.url;
+} else {
+  link.href = `https://www.churchofjesuschrist.org/study/manual/hymns/${hymn.slug}?lang=eng`;
+}
 
           link.target = "_blank";
           link.rel = "noopener";
