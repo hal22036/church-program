@@ -49,40 +49,67 @@
       background: #eeeeee;
     }
   </style>
-
 </head>
 
 <body>
   <div class="wrap" id="program"></div>
 
   <script>
-
     // CHANGE THIS ONE LINE EACH WEEK
     const version = "0726";
 
+    /*
+      HYMN TYPES
+
+      "classic"
+      Standard hymnbook:
+      /study/manual/hymns/
+
+      "home"
+      Hymns—For Home and Church:
+      /study/music/hymns-for-home-and-church/
+
+      "primary"
+      Primary and children's songs:
+      /media/music/songs/
+
+      You may also use:
+      url: "https://full-link-here"
+
+      A full URL overrides the type and slug.
+    */
+
     // CHANGE HYMN NAMES EACH WEEK
     const hymns = [
-  {
-    title: "Opening Hymn",
-    hymn: "O Thou Rock of Our Salvation",
-    slug: "o-thou-rock-of-our-salvation"
-  },
-  {
-    title: "Sacrament Hymn",
-    hymn: "Bread of Life, Living Water",
-    slug: "bread-of-life-living-water"
-  },
-//  {
-//  title: "Intermediate Hymn",
-//  hymn: "Elijah and the Still, Small Voice",
-//  url: "https://www.churchofjesuschrist.org/media/music/songs/elijah-and-the-still-small-voice?lang=eng"
-//},
-  {
-    title: "Closing Hymn",
-    hymn: "It Is Well With My Soul",
-    slug: "it-is-well-with-my-soul"
-  }
-];
+      {
+        title: "Opening Hymn",
+        hymn: "O Thou Rock of Our Salvation",
+        slug: "o-thou-rock-of-our-salvation",
+        type: "classic"
+      },
+      {
+        title: "Sacrament Hymn",
+        hymn: "Bread of Life, Living Water",
+        slug: "bread-of-life-living-water",
+        type: "home"
+      },
+
+      /*
+      {
+        title: "Primary Musical Number",
+        hymn: "Elijah and the Still, Small Voice",
+        slug: "elijah-and-the-still-small-voice",
+        type: "primary"
+      },
+      */
+
+      {
+        title: "Closing Hymn",
+        hymn: "It Is Well With My Soul",
+        slug: "it-is-well-with-my-soul",
+        type: "home"
+      }
+    ];
 
     const images = [
       "page_front@2x-100.jpg",
@@ -94,28 +121,33 @@
 
     const container = document.getElementById("program");
 
+    function getHymnUrl(hymn) {
+      if (hymn.url) {
+        return hymn.url;
+      }
+
+      if (hymn.type === "home") {
+        return `https://www.churchofjesuschrist.org/study/music/hymns-for-home-and-church/${hymn.slug}?lang=eng`;
+      }
+
+      if (hymn.type === "primary") {
+        return `https://www.churchofjesuschrist.org/media/music/songs/${hymn.slug}?lang=eng`;
+      }
+
+      return `https://www.churchofjesuschrist.org/study/manual/hymns/${hymn.slug}?lang=eng`;
+    }
+
     images.forEach((file, index) => {
-
       if (file === "page_program@2x-100.jpg") {
-
         const songDiv = document.createElement("div");
         songDiv.className = "song-links";
 
-        hymns.forEach(hymn => {
-
+        hymns.forEach((hymn) => {
           const link = document.createElement("a");
 
-          const searchTerm = encodeURIComponent(hymn.hymn);
-
-          if (hymn.url) {
-  link.href = hymn.url;
-} else {
-  link.href = `https://www.churchofjesuschrist.org/study/manual/hymns/${hymn.slug}?lang=eng`;
-}
-
+          link.href = getHymnUrl(hymn);
           link.target = "_blank";
-          link.rel = "noopener";
-
+          link.rel = "noopener noreferrer";
           link.textContent = `${hymn.title}: ${hymn.hymn}`;
 
           songDiv.appendChild(link);
@@ -127,13 +159,10 @@
       const img = document.createElement("img");
 
       img.src = `${file}?v=${version}`;
-
       img.alt = `Program page ${index + 1}`;
 
       container.appendChild(img);
     });
-
   </script>
-
 </body>
 </html>
