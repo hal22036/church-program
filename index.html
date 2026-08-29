@@ -1,10 +1,51 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Discovery Park Ward Program</title>
+
+  <!-- WEEKLY CHANGES START HERE -->
+  <script>
+     /*
+      HYMN TYPES
+      "classic" = Standard hymnbook: /study/manual/hymns/
+      "home"  = Hymns--For Home and Church: /study/music/hymns-for-home-and-church/
+      "primary" = Primary and children's songs: /media/music/songs/
+      You may also use: url: "https://full-link-here"
+      A full URL overrides the type and slug.
+    */
+
+    const version = "830";
+
+    const hymns = [
+      {
+        title: "Opening Hymn",
+        hymn: "Come unto Jesus",
+        slug: "come-unto-jesus",
+        type: "classic"
+      },
+      {
+        title: "Sacrament Hymn",
+        hymn: "God Loved Us, So He Sent His Son",
+        slug: "god-loved-us-so-he-sent-his-son",
+        type: "classic"
+      },
+      {
+        title: "Intermediate Hymn",
+        hymn: "My Redeemer Lives",
+        slug: "my-redeemer-lives",
+        type: "classic"
+      },
+      {
+        title: "Closing Hymn",
+        hymn: "God Is In His Holy Temple",
+        slug: "god-is-in-his-holy-temple",
+        type: "classic"
+      }
+    ];
+  </script>
+  <!-- WEEKLY CHANGES END HERE -->
 
   <style>
     body {
@@ -55,60 +96,7 @@
   <div class="wrap" id="program"></div>
 
   <script>
-    // CHANGE THIS ONE LINE EACH WEEK
-    const version = "0830";
-
-    /*
-      HYMN TYPES
-
-      "classic"
-      Standard hymnbook:
-      /study/manual/hymns/
-
-      "home"
-      Hymns—For Home and Church:
-      /study/music/hymns-for-home-and-church/
-
-      "primary"
-      Primary and children's songs:
-      /media/music/songs/
-
-      You may also use:
-      url: "https://full-link-here"
-
-      A full URL overrides the type and slug.
-    */
-
-    // CHANGE HYMN NAMES EACH WEEK
-    const hymns = [
-      {
-        title: "Opening Hymn",
-        hymn: "Come unto Jesus",
-        slug: "come-unto-jesus",
-        type: "classic"
-      },
-      {
-        title: "Sacrament Hymn",
-        hymn: "God Loved Us, So He Sent His Son",
-        slug: "god-loved-us-so-he-sent-his-son",
-        type: "classic"
-      },
-
-      {
-        title: "Intermediate Hymn",
-        hymn: "My Redeemer Lives",
-        slug: "my-redeemer-lives",
-        type: "classic"
-      },
-      
-      {
-        title: "Closing Hymn",
-        hymn: "God Is In His Holy Temple",
-        slug: "god-is-in-his-holy-temple",
-        type: "classic"
-      }
-    ];
-
+   
     const images = [
       "page_front@2x-100.jpg",
       "page_program@2x-100.jpg",
